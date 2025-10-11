@@ -1,18 +1,14 @@
-/**  TASK G:
+/* H-TASK: 
 
-Yagona parametrga ega function tuzing.
-Va bu function parametr orqalik integer ma'lumot turlariga ega bo'lgan bir arrayni qabul qilsin.
-Ushbu function bizga arrayning tarkibidagi birinchi eng katta qiymatning indeksini qaytarsin.
+shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, faqat positive qiymatlarni olib string holatda return qilsin
+MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 
-MASALAN: getHighestIndex([5, 21, 12, 21 ,8]); return qiladi 1 sonini
-**/
-const getHighestIndex = (array: number[]) => {
-  const highestNumber = Math.max(...array);
-  const highestIndex = array.indexOf(highestNumber);
-  return highestIndex;
+@MITASK */
+
+const givePositive = (array: number[]): string => {
+  const positive = array.filter((ele) => ele > 0).join("");
+  return positive;
 };
 
-console.log(
-  "The index of array's highest element=>",
-  getHighestIndex([4, 2, 5, 6, 8, 9])
-);
+console.log(typeof givePositive([1, -3, 2]));
+console.log(givePositive([1, -3, 2]));
