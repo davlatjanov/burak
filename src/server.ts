@@ -1,4 +1,19 @@
-// Architectural pattern: MVC=>model view controller ; DI => dependency injection , MVP=> model view presenter
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import app from "./app";
 
-// Design pattern: Middleware, Decorator
-console.log("Execution");
+dotenv.config();
+
+mongoose.set("strictQuery", false);
+mongoose
+  .connect(process.env.MONGO_URL as string, {})
+  .then((data) => {
+    console.log("MongoDB connection Succeed");
+    const PORT = process.env.PORT ?? 3003;
+    app.listen(PORT, function () {
+      console.log(`The server is running successfully on port: ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("ERROR on connection on MongoDB", err);
+  });
