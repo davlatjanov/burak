@@ -13,6 +13,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
     console.log("ERROR: goHome restaurant", err);
   }
 };
+
 restaurantController.login = (req: Request, res: Response) => {
   try {
     console.log("Execution login restaurant");
@@ -21,6 +22,7 @@ restaurantController.login = (req: Request, res: Response) => {
     console.log("ERROR: login restaurant", err);
   }
 };
+
 restaurantController.signup = (req: Request, res: Response) => {
   try {
     console.log("Execution signup restaurant");

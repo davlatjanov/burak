@@ -33,15 +33,19 @@ const memberSchema = new Schema(
       select: false,
       required: true,
     },
+
     memberAddress: {
       type: String,
     },
+
     memberImage: {
       type: String,
     },
+
     memberDescription: {
       type: String,
     },
+
     memberPoints: {
       type: Number,
       default: 0,

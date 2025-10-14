@@ -1,14 +1,19 @@
-/* H-TASK: 
+/* H2-TASK: 
 
-shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, faqat positive qiymatlarni olib string holatda return qilsin
-MASALAN: getPositive([1, -4, 2]) return qiladi "12"
+Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
+MASALAN: getDigits("m14i1t") return qiladi "141"
 
 @MITASK */
+const getDigits = (array: string) => {
+  const digits = array
+    .split("")
+    .map((ele) => {
+      return !isNaN(Number(ele)) ? ele : "";
+    })
+    .join("");
 
-const givePositive = (array: number[]): string => {
-  const positive = array.filter((ele) => ele > 0).join("");
-  return positive;
+  return digits;
 };
 
-console.log(typeof givePositive([1, -3, 2]));
-console.log(givePositive([1, -3, 2]));
+console.log(typeof getDigits("m14i1t"));
+console.log(getDigits("m14i1t"));
