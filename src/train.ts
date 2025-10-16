@@ -1,19 +1,13 @@
-/* H2-TASK: 
+/* Project Standards:
+-Logging standards(Morgan Format)
+- Naming standards
+    function, method, variable => CAMEL case
+    class => PASCAL case
+    folder => KEBAB case
+    css => SNAKE case
 
-Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
-MASALAN: getDigits("m14i1t") return qiladi "141"
+-ERROR HANDLING 
 
-@MITASK */
-const getDigits = (array: string) => {
-  const digits = array
-    .split("")
-    .map((ele) => {
-      return !isNaN(Number(ele)) ? ele : "";
-    })
-    .join("");
 
-  return digits;
-};
 
-console.log(typeof getDigits("m14i1t"));
-console.log(getDigits("m14i1t"));
+*/
