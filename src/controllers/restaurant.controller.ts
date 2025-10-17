@@ -12,18 +12,9 @@ restaurantController.goHome = (req: Request, res: Response) => {
     console.log("Execution goHome restaurant");
     res.send("Home Page restaurant");
 
-    /* Responses: send | json | redirect | render*/
+    /* Responses: send | json | redirect | render */
   } catch (err) {
     console.log("ERROR: goHome restaurant", err);
-  }
-};
-
-restaurantController.login = (req: Request, res: Response) => {
-  try {
-    console.log("Execution login restaurant");
-    res.send("Login Page restaurant");
-  } catch (err) {
-    console.log("ERROR: login restaurant", err);
   }
 };
 
@@ -33,6 +24,31 @@ restaurantController.signup = (req: Request, res: Response) => {
     res.send("Signup Page restaurant");
   } catch (err) {
     console.log("ERROR: signup restaurant", err);
+  }
+};
+restaurantController.login = (req: Request, res: Response) => {
+  try {
+    console.log("Execution login restaurant");
+    res.send("Login Page restaurant");
+  } catch (err) {
+    console.log("ERROR: login restaurant", err);
+  }
+};
+
+restaurantController.processSignup = async (req: Request, res: Response) => {
+  try {
+    console.log("Execution processSignup restaurant");
+    console.log("body", req.body);
+    // ask to =>  const newSmth: MemberInput = { memberNick: "smr", memberPassword: "2234" , memberPhone:''};
+    const newMember: MemberInput = req.body;
+    newMember.memberType = MemberType.RESTAURANT;
+    console.log("body2", newMember);
+    const result = await memberService.processSignup(newMember);
+
+    res.send(result);
+  } catch (err) {
+    console.log("ERROR: processSignup restaurant", err);
+    res.send(err);
   }
 };
 
@@ -45,17 +61,4 @@ restaurantController.processLogin = (req: Request, res: Response) => {
   }
 };
 
-restaurantController.processSignup = async (req: Request, res: Response) => {
-  try {
-    console.log("Execution processSignup restaurant");
-    console.log("body", req.body);
-    const newMember: MemberInput = req.body;
-    newMember.memberType = MemberType.RESTAURANT;
-    const result = await memberService.processSignup(newMember);
-    res.send(result);
-  } catch (err) {
-    console.log("ERROR: processSignup restaurant", err);
-    res.send(err);
-  }
-};
 export default restaurantController;

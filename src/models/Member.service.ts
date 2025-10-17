@@ -1,6 +1,6 @@
 import MemberModel from "../schemas/Member.model";
 import { Member, MemberInput } from "../libs/types/member";
-import Errors, { Message, HttpCode } from "../libs/Errors";
+import Errors, { Message, HttpCode } from "../libs/errors";
 import { MemberType } from "../libs/enums/member.enum";
 import { ObjectId } from "mongoose";
 
@@ -19,10 +19,9 @@ class MemberService {
 
     try {
       const result = await this.memberModel.create(input);
-      console.log("result", result);
-      const plainResult: Member = result.toObject();
-      plainResult.memberPassword = "";
-      return plainResult;
+      console.log("result", result._id);
+      result.memberPassword = "";
+      return result.toObject() as Member;
     } catch (err) {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }

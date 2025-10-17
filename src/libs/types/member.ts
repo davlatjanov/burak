@@ -1,13 +1,13 @@
-import { ObjectId } from "mongoose";
 import { MemberStatus, MemberType } from "../enums/member.enum";
+import mongoose, { ObjectId, Types } from "mongoose";
 
 export interface Member {
-  _id: ObjectId;
-  memberType: MemberType;
-  memberStatus: MemberStatus;
+  _id: Types.ObjectId;
   memberNick: string;
   memberPhone: string;
   memberPassword?: string;
+  memberType: MemberType;
+  memberStatus: MemberStatus;
   memberAddress?: string;
   memberDescription?: string;
   memberImage?: string;
@@ -15,6 +15,7 @@ export interface Member {
   createdAt: Date;
   updatedAt: Date;
 }
+
 export interface MemberInput {
   memberType?: MemberType;
   memberStatus?: MemberStatus;
