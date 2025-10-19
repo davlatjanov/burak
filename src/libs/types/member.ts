@@ -28,3 +28,8 @@ export interface MemberInput {
   memberDescription?: string;
   memberPoints?: string;
 }
+
+export interface LoginInput {
+  memberNick: string;
+  memberPassword: string;
+}

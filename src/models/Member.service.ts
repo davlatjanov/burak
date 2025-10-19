@@ -1,8 +1,8 @@
 import MemberModel from "../schemas/Member.model";
-import { Member, MemberInput } from "../libs/types/member";
+import { LoginInput, Member, MemberInput } from "../libs/types/member";
 import Errors, { Message, HttpCode } from "../libs/errors";
 import { MemberType } from "../libs/enums/member.enum";
-import { ObjectId } from "mongoose";
+import * as bcrypt from "bcryptjs";
 
 class MemberService {
   private readonly memberModel;
@@ -17,6 +17,9 @@ class MemberService {
     console.log("exist:", exist);
     if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 
+    const salt: string = await bcrypt.genSalt();
+    input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+
     try {
       const result = await this.memberModel.create(input);
       console.log("result", result._id);
@@ -25,6 +28,27 @@ class MemberService {
     } catch (err) {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
+  }
+
+  public async processLogin(input: LoginInput): Promise<Member> {
+    const member = await this.memberModel
+      .findOne(
+        {
+          memberNick: input.memberNick,
+        },
+        { memberNick: 1, memberPassword: 1 }
+      )
+      .exec();
+    console.log("member:", member);
+    if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    const isMatch = await bcrypt.compare(
+      input.memberPassword,
+      member.memberPassword
+    );
+    if (!isMatch) {
+      throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
+    }
+    return await this.memberModel.findById(member._id).exec();
   }
 }
 
