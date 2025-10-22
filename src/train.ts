@@ -19,24 +19,25 @@ A private network inside a cloud platform
 
 */
 
-function majorityElement(arr: number[]): number {
-  let maxCount = 0;
-  let mostRepeated: number = arr[0];
+/*J-TASK: 
 
-  for (let i = 0; i < arr.length; i++) {
-    let count = 0;
+Shunday function yozing, u string qabul qilsin va string ichidagi eng uzun sozni qaytarsin.
+MASALAN: findLongestWord("I come from Uzbekistan ") return "Uzbekistan"
 
-    for (let j = 0; j < arr.length; j++) {
-      if (arr[i] === arr[j]) count++;
-    }
+@MITASK*/
 
-    if (count > maxCount) {
-      maxCount = count;
-      mostRepeated = arr[i];
+const findLongestWord = (sentance: string) => {
+  const words = sentance.split(" ");
+
+  let longestWord = "";
+
+  for (let word of words) {
+    if (word.length > longestWord.length) {
+      longestWord = word;
     }
   }
 
-  return mostRepeated;
-}
+  return longestWord;
+};
 
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4, 3, 3, 3]));
+console.log(findLongestWord("I come from Uzbekistan"));
