@@ -1,3 +1,12 @@
+/* 
+VPS =====> Vertual Private Server
+A virtual machine running on a physical server.
+
+VPC =====> Vertual Private Cloud
+A private network inside a cloud platform
+
+*/
+
 /* Project Standards:
 -Logging standards(Morgan Format)
 - Naming standards
@@ -9,20 +18,6 @@
 -ERROR HANDLING 
 
 */
-
-/*
- TRADITIONAL API
- REST API
- GraphQL API
-*/
-
-/*
-I-TASK:
-
-Shunday function yozing, u parametridagi array ichida eng kop takrorlangan raqamni topib qaytarsin.
-MASALAN: majorityElement([1,2,3,4,5,4,3,4]) return 4
-
-@MITASK */
 
 function majorityElement(arr: number[]): number {
   let maxCount = 0;
