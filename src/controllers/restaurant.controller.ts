@@ -11,7 +11,7 @@ const memberService = new MemberService();
 restaurantController.goHome = (req: Request, res: Response) => {
   try {
     console.log("Execution goHome restaurant");
-    res.send("Home Page restaurant");
+    res.render("home");
   } catch (err) {
     console.log("ERROR: goHome restaurant", err);
     if (err instanceof Errors) res.status(err.code).json(err);
@@ -22,7 +22,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
 restaurantController.signup = (req: Request, res: Response) => {
   try {
     console.log("signup restaurant");
-    res.send("Signup Page restaurant");
+    res.render("signup");
   } catch (err) {
     console.log("ERROR: signup restaurant", err);
     if (err instanceof Errors) res.status(err.code).json(err);
@@ -32,7 +32,7 @@ restaurantController.signup = (req: Request, res: Response) => {
 restaurantController.login = (req: Request, res: Response) => {
   try {
     console.log("login restaurant");
-    res.send("Login Page restaurant");
+    res.render("login");
   } catch (err) {
     console.log("ERROR: login restaurant", err);
     if (err instanceof Errors) res.status(err.code).json(err);
