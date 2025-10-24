@@ -4,15 +4,14 @@ import router from "./router";
 import routerAdmin from "./router-admin";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
-import session from "express-session"; // helps store user sessions
-import ConnectMongoDBSession from "connect-mongodb-session"; // bridge between MongoDB and sessions , By default, express-session stores sessions in memory, which disappears when you restart the server — not good for real projects.
-// This package lets you save sessions in MongoDB, so they stay safe and persistent
+import session from "express-session"; //
+import ConnectMongoDBSession from "connect-mongodb-session";
 
-const MongoDBStore = ConnectMongoDBSession(session); //To store, retrieve, update, and delete user session data in MongoDB — automatically, for express-session.
+const MongoDBStore = ConnectMongoDBSession(session);
 const store = new MongoDBStore({
   uri: String(process.env.MONGO_URL),
   collection: "sessions",
-}); //
+});
 
 //------>1-ENTERANCE<---------
 const app = express();
@@ -22,6 +21,7 @@ app.use(express.json());
 app.use(morgan(MORGAN_FORMAT));
 
 //------>2-SESSIONS<----------
+
 app.use(
   session({
     secret: String(process.env.SESSION_SECRET),

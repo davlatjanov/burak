@@ -29,7 +29,7 @@ restaurantController.signup = (req: Request, res: Response) => {
     else res.status(Errors.standard.code).json(Errors.standard);
   }
 };
-restaurantController.login = (req: AdminRequest, res: Response) => {
+restaurantController.login = (req: Request, res: Response) => {
   try {
     console.log("login restaurant");
     res.render("login");
