@@ -6,11 +6,11 @@ const routerAdmin = express.Router();
 routerAdmin.get("/", restaurantController.goHome);
 
 routerAdmin
-  .get("/login", restaurantController.login)
+  .get("/login", restaurantController.getLogin)
   .post("/login", restaurantController.processLogin);
 
 routerAdmin
-  .get("/signup", restaurantController.signup)
+  .get("/signup", restaurantController.getSignup)
   .post("/signup", restaurantController.processSignup);
 
 routerAdmin.get("/check-me", restaurantController.checkAuthSession);
