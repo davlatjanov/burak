@@ -10,33 +10,31 @@ const memberService = new MemberService();
 
 restaurantController.goHome = (req: Request, res: Response) => {
   try {
-    console.log("Execution goHome restaurant");
+    console.log("GoHome");
     res.render("home");
   } catch (err) {
-    console.log("ERROR: goHome restaurant", err);
-    if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standard.code).json(Errors.standard);
+    console.log("Error: goHome", err);
+    res.redirect("/admin");
   }
 };
 
-restaurantController.signup = (req: Request, res: Response) => {
+restaurantController.getSignup = (req: Request, res: Response) => {
   try {
-    console.log("signup restaurant");
+    console.log("GetSignup");
     res.render("signup");
   } catch (err) {
-    console.log("ERROR: signup restaurant", err);
-    if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standard.code).json(Errors.standard);
+    console.log("Error:getSignup", err);
+    res.redirect("/admin");
   }
 };
-restaurantController.login = (req: Request, res: Response) => {
+
+restaurantController.getLogin = (req: Request, res: Response) => {
   try {
-    console.log("login restaurant");
+    console.log("GetLogin");
     res.render("login");
   } catch (err) {
-    console.log("ERROR: login restaurant", err);
-    if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standard.code).json(Errors.standard);
+    console.log("Error: getLogin", err);
+    res.redirect("/admin");
   }
 };
 
@@ -45,7 +43,7 @@ restaurantController.processSignup = async (
   res: Response
 ) => {
   try {
-    console.log("processSignup restaurant");
+    console.log("processSignup");
     console.log("body", req.body);
     const newMember: MemberInput = req.body;
     newMember.memberType = MemberType.RESTAURANT;
@@ -56,9 +54,12 @@ restaurantController.processSignup = async (
       res.send(result);
     });
   } catch (err) {
-    console.log("ERROR: processSignup restaurant", err);
-    if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standard.code).json(Errors.standard);
+    console.log("Error: processSignup", err);
+    const message =
+      err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
+    res.send(
+      `<script> alert("${message}"); window.location.replace('/admin/signup')</script>`
+    );
   }
 };
 
@@ -67,7 +68,7 @@ restaurantController.processLogin = async (
   res: Response
 ) => {
   try {
-    console.log("processLogin restaurant");
+    console.log("processLogin");
     const input: LoginInput = req.body;
     const result = await memberService.processLogin(input);
     req.session.member = result;
@@ -75,9 +76,12 @@ restaurantController.processLogin = async (
       res.send(result);
     });
   } catch (err) {
-    console.log("ERROR: processLogin restaurant", err);
-    if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standard.code).json(Errors.standard);
+    console.log("Error: processSignup", err);
+    const message =
+      err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
+    res.send(
+      `<script> alert("${message}"); window.location.replace('/admin/signup')</script>`
+    );
   }
 };
 
@@ -85,6 +89,7 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
   try {
     console.log("logout");
     req.session.destroy(() => {
+      res.clearCookie("connection.sid", { path: "/" });
       res.redirect("/admin");
     });
   } catch (err) {

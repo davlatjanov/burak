@@ -19,25 +19,22 @@ A private network inside a cloud platform
 
 */
 
-/*J-TASK: 
+/*K-TASK: 
 
-Shunday function yozing, u string qabul qilsin va string ichidagi eng uzun sozni qaytarsin.
-MASALAN: findLongestWord("I come from Uzbekistan ") return "Uzbekistan"
+Shunday function yozing, u string qabul qilsin va string ichidagi unli harflar sonini qaytarsin.
+MASALAN: countVowels("string") return 1;
 
-@MITASK*/
+@MITASK
 
-const findLongestWord = (sentance: string) => {
-  const words = sentance.split(" ");
+*/
 
-  let longestWord = "";
-
-  for (let word of words) {
-    if (word.length > longestWord.length) {
-      longestWord = word;
-    }
-  }
-
-  return longestWord;
+const countVowels = (word: string) => {
+  return word
+    .split("")
+    .filter((ele) => {
+      return "aeiouAEIOU".includes(ele);
+    })
+    .join("").length;
 };
 
-console.log(findLongestWord("I come from Uzbekistan"));
+console.log(countVowels("stAring"));
