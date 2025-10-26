@@ -19,22 +19,19 @@ A private network inside a cloud platform
 
 */
 
-/*K-TASK: 
+/*L-TASK: 
 
-Shunday function yozing, u string qabul qilsin va string ichidagi unli harflar sonini qaytarsin.
-MASALAN: countVowels("string") return 1;
+Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
+MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
 
 @MITASK
-
 */
 
-const countVowels = (word: string) => {
-  return word
-    .split("")
-    .filter((ele) => {
-      return "aeiouAEIOU".includes(ele);
-    })
-    .join("").length;
+const reverseSentence = (sentance: string) => {
+  return sentance
+    .split(" ")
+    .map((word) => word.split("").reverse().join(""))
+    .join(" ");
 };
 
-console.log(countVowels("stAring"));
+console.log(reverseSentence("we like coding"));
