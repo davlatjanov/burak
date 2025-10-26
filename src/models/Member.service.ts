@@ -60,9 +60,7 @@ class MemberService {
     if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 
     const salt: string = await bcrypt.genSalt();
-    console.log(salt, "=>", salt.length);
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
-    console.log(input.memberPassword, "=>", input.memberPassword.length);
 
     try {
       const result = await this.memberModel.create(input);

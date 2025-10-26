@@ -1,10 +1,8 @@
 node_modules
 dist
 .env
-
+uploads
 explain.txt
-
-
 
 .DS_Store
 
