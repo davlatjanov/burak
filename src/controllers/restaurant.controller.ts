@@ -44,14 +44,16 @@ restaurantController.processSignup = async (
 ) => {
   try {
     console.log("processSignup");
-    console.log("body", req.body);
+
+    const file = req.file;
     const newMember: MemberInput = req.body;
+    newMember.memberImage = file?.path;
     newMember.memberType = MemberType.RESTAURANT;
     const result = await memberService.processSignup(newMember);
 
     req.session.member = result;
     req.session.save(() => {
-      res.send(result);
+      res.redirect("/admin/product/all");
     });
   } catch (err) {
     console.log("Error: processSignup", err);
@@ -73,7 +75,7 @@ restaurantController.processLogin = async (
     const result = await memberService.processLogin(input);
     req.session.member = result;
     req.session.save(() => {
-      res.send(result);
+      res.redirect("/admin/product/all");
     });
   } catch (err) {
     console.log("Error: processSignup", err);
