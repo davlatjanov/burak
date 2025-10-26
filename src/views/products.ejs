@@ -4,5 +4,9 @@
 <body>
   <div class="format1">PRODUCTS PAGE</div>
   <div><%=member.memberNick%></div>
+
+  <% products.map((value, key)=> { %>
+  <p><%= value.productName %> - <%= value.productSize %></p>
+  <% })%>
 </body>
 <%- include('includes/footer') %>
