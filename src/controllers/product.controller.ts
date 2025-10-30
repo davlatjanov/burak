@@ -23,7 +23,7 @@ productController.getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-productController.createNewProtuct = async (
+productController.createNewProduct = async (
   req: AdminRequest,
   res: Response
 ) => {
@@ -53,12 +53,12 @@ productController.createNewProtuct = async (
   }
 };
 
-productController.updateChosenProtuct = async (req: Request, res: Response) => {
+productController.updateChosenProduct = async (req: Request, res: Response) => {
   try {
     console.log("updateChosenProtuct");
     const id = shapeIntoMongooseObjectId(req.params.id);
     const input = req.body;
-    const result = await productService.updateChosenProtuct(id, input);
+    const result = await productService.updateChosenProduct(id, input);
     res.status(HttpCode.OK).json({ data: result });
   } catch (err) {
     console.log("Error: updateChosenProduct:", err);

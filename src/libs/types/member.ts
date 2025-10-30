@@ -19,6 +19,16 @@ export interface Member {
   updatedAt: Date;
 }
 
+export interface MemberUpdateInput {
+  _id: ObjectId;
+  memberNick?: string;
+  memberPhone?: string;
+  memberPassword?: string;
+  memberStatus?: MemberStatus;
+  memberAddress?: string;
+  memberDescription?: string;
+  memberImage?: string;
+}
 export interface MemberInput {
   memberType?: MemberType;
   memberStatus?: MemberStatus;

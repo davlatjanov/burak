@@ -8,6 +8,7 @@ import ProductModel from "../schemas/Product.model";
 import { HttpCode } from "../libs/errors";
 import { Message } from "../libs/errors";
 import { shapeIntoMongooseObjectId } from "../libs/config";
+import { ObjectId } from "mongoose";
 
 class ProductService {
   private readonly productModel;
@@ -33,10 +34,11 @@ class ProductService {
     }
   }
 
-  public async updateChosenProtuct(
-    id: string,
+  public async updateChosenProduct(
+    id: ObjectId,
     input: ProductUpdateInput
   ): Promise<Product> {
+    console.log(typeof id);
     const result = await this.productModel
       .findOneAndUpdate({ _id: id }, input, { new: true })
       .exec();

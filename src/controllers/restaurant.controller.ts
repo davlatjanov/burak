@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import MemberService from "../models/Member.service";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
-import Errors, { Message } from "../libs/errors";
+import Errors, { HttpCode, Message } from "../libs/errors";
 
 const restaurantController: T = {};
 const memberService = new MemberService();
@@ -46,6 +46,7 @@ restaurantController.processSignup = async (
     console.log("processSignup");
 
     const file = req.file;
+    console.log("req.file", req.file);
     const newMember: MemberInput = req.body;
     newMember.memberImage = file?.path;
     newMember.memberType = MemberType.RESTAURANT;
@@ -97,6 +98,30 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
   } catch (err) {
     console.log("Error: Logout", err);
     res.redirect("/admin");
+  }
+};
+
+restaurantController.getUsers = async (req: Request, res: Response) => {
+  try {
+    console.log("getAllUsers");
+    const result = await memberService.getUsers();
+    res.render("users", { users: result });
+  } catch (err) {
+    console.log("Error: getAllUsers", err);
+    res.redirect("/admin/login");
+  }
+};
+
+restaurantController.updateChosenUser = async (req: Request, res: Response) => {
+  try {
+    console.log("updateChosenUser");
+    const result = await memberService.updateChosenUser(req.body);
+    console.log("USER UPDATE", result);
+    res.status(HttpCode.OK).json({ data: result });
+  } catch (err) {
+    console.log("Error: updateChosenUser", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standard.code).json(Errors.standard);
   }
 };
 

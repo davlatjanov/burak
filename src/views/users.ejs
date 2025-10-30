@@ -3,5 +3,9 @@
 <script src=""></script>
 <body>
   <div class="format1">USERS PAGE</div>
+
+  <% users.map((value, key)=> { %>
+  <p><%= value.memberNick %> - <%= value.memberStatus %></p>
+  <% })%>
 </body>
 <%- include('includes/footer') %>
