@@ -19,17 +19,17 @@ A private network inside a cloud platform
 
 */
 
-/*N-TASK: 
+/*O-TASK:
 
-Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham, orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
-MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
+Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va array ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
+MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
 
 @MITASK
 */
 
-const palindromCheck = (word: string) => {
-  const reversed = word.split("").reverse().join("");
-  return reversed === word ? true : false;
+const calculateSumOfNumbers = (arr: any[]) => {
+  return arr
+    .filter((ele) => typeof ele === "number")
+    .reduce((acc, num) => acc + num, 0);
 };
-
-console.log(palindromCheck("daad"));
+console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
