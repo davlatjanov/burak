@@ -46,6 +46,7 @@ function validateSignupForm() {
     alert("Password is different, please check it! ");
     return false;
   }
+
   const inputMember = $(".member-image").get(0);
   const memberImage =
     inputMember && inputMember.files.length > 0

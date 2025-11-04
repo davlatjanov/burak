@@ -7,6 +7,8 @@ A private network inside a cloud platform
 
 */
 
+import { T } from "./libs/types/common";
+
 /* Project Standards:
 -Logging standards(Morgan Format)
 - Naming standards
@@ -19,17 +21,16 @@ A private network inside a cloud platform
 
 */
 
-/*O-TASK:
+/*P-TASK:
 
-Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va array ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
-MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin qaytarsin.
+MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
 
 @MITASK
 */
 
-const calculateSumOfNumbers = (arr: any[]) => {
-  return arr
-    .filter((ele) => typeof ele === "number")
-    .reduce((acc, num) => acc + num, 0);
-};
-console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
+function objectToArray(obj: T) {
+  return Object.entries(obj);
+}
+
+console.log(objectToArray({ a: 10, g: 20 }));
