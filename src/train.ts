@@ -21,16 +21,21 @@ import { T } from "./libs/types/common";
 
 */
 
-/*P-TASK:
+/*R-TASK:
 
-Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin qaytarsin.
-MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
+
+Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
+MASALAN: calculate("1+3") return 4;
 
 @MITASK
 */
 
-function objectToArray(obj: T) {
-  return Object.entries(obj);
+function calculate(expr: string): number {
+  return expr
+    .replace(/\s+/g, "")
+    .split("+")
+    .map(Number)
+    .reduce((a, b) => a + b, 0);
 }
 
-console.log(objectToArray({ a: 10, g: 20 }));
+console.log(calculate("1+3"));
