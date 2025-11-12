@@ -21,21 +21,25 @@ import { T } from "./libs/types/common";
 
 */
 
-/*R-TASK:
+/*S-TASK:
 
-
-Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
-MASALAN: calculate("1+3") return 4;
+Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+MASALAN: missingNumber([3, 0, 1]) return 2
 
 @MITASK
 */
 
-function calculate(expr: string): number {
-  return expr
-    .replace(/\s+/g, "")
-    .split("+")
-    .map(Number)
-    .reduce((a, b) => a + b, 0);
+function missingNumber(arr: number[]) {
+  const fullArray: number[] = [];
+  let min = Math.min(...arr);
+  let max = Math.max(...arr);
+
+  for (let i: number = min; i <= max; i++) {
+    fullArray.push(i);
+  }
+
+  const missings = fullArray.filter((ele) => !arr.includes(ele));
+  return missings;
 }
 
-console.log(calculate("1+3"));
+console.log(missingNumber([4, 2, 6, 7, 5, 10]));
