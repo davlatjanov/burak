@@ -21,25 +21,15 @@ import { T } from "./libs/types/common";
 
 */
 
-/*S-TASK:
+/*T-TASK:
 
-Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
-MASALAN: missingNumber([3, 0, 1]) return 2
+Shunday function yozing, u sonlardan tashkil topgan 2 ta array qabul qilsin va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin
+MASALAN: mergeSortedArrays([0,3,4,31], [4,6,30]); return [0,3,4,4,6,30,31]
 
-@MITASK
 */
 
-function missingNumber(arr: number[]) {
-  const fullArray: number[] = [];
-  let min = Math.min(...arr);
-  let max = Math.max(...arr);
-
-  for (let i: number = min; i <= max; i++) {
-    fullArray.push(i);
-  }
-
-  const missings = fullArray.filter((ele) => !arr.includes(ele));
-  return missings;
+function mergeSortedArrays(a: number[], b: number[]): number[] {
+  return [...a, ...b].sort((x, y) => x - y);
 }
 
-console.log(missingNumber([4, 2, 6, 7, 5, 10]));
+console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
