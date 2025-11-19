@@ -21,15 +21,29 @@ import { T } from "./libs/types/common";
 
 */
 
-/*T-TASK:
+/*TASK U
 
-Shunday function yozing, u sonlardan tashkil topgan 2 ta array qabul qilsin va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin
-MASALAN: mergeSortedArrays([0,3,4,31], [4,6,30]); return [0,3,4,4,6,30,31]
+Shunday function tuzing, uni number parametri bo'lsin.
+Va bu function berilgan parametrgacha, 0'dan boshlab
+oraliqda nechta toq sonlar borligini aniqlab return qilsi.
+
+MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
 
 */
 
-function mergeSortedArrays(a: number[], b: number[]): number[] {
-  return [...a, ...b].sort((x, y) => x - y);
+function sumOdd(enteredNumbers: number) {
+  if (enteredNumbers < 0) {
+    return "enter Positive numbers";
+  }
+  let count: number[] = [];
+
+  for (let i = 0; i < enteredNumbers; i++) {
+    if (i % 2 === 1) {
+      count.push(i);
+    }
+  }
+
+  return count.length;
 }
 
-console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+console.log(sumOdd(9));
