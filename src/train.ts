@@ -21,29 +21,18 @@ import { T } from "./libs/types/common";
 
 */
 
-/*TASK U
+/*V-TASK:
 
-Shunday function tuzing, uni number parametri bo'lsin.
-Va bu function berilgan parametrgacha, 0'dan boshlab
-oraliqda nechta toq sonlar borligini aniqlab return qilsi.
+Shunday function yozing, uni string parametri bolsin va stringdagi harf va u harf necha marta takrorlangani sonidan tashkil topgan object qaytarsin.
+MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
 
-MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
-
+@MITASK
 */
 
-function sumOdd(enteredNumbers: number) {
-  if (enteredNumbers < 0) {
-    return "enter Positive numbers";
-  }
-  let count: number[] = [];
-
-  for (let i = 0; i < enteredNumbers; i++) {
-    if (i % 2 === 1) {
-      count.push(i);
-    }
-  }
-
-  return count.length;
+function countChars(str: string) {
+  return str.split("").reduce((acc, ch) => {
+    acc[ch] = (acc[ch] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
 }
-
-console.log(sumOdd(9));
+console.log(countChars("hello"));
