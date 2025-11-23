@@ -21,18 +21,23 @@ import { T } from "./libs/types/common";
 
 */
 
-/*V-TASK:
+/*W-TASK:
 
-Shunday function yozing, uni string parametri bolsin va stringdagi harf va u harf necha marta takrorlangani sonidan tashkil topgan object qaytarsin.
-MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+Shunday function yozing, uni array va number parametrlari bolsin. Function arrayni numberda berilgan uzunlikda kesib bolaklarga ajratilgan array holatida qaytarsin
+MASALAN: chunkArray([1,2,3,4,5,6,7,8,9,10], 3) return [[1,2,3], [4,5,6], [7,8,9], [10]]
+
 
 @MITASK
 */
 
-function countChars(str: string) {
-  return str.split("").reduce((acc, ch) => {
-    acc[ch] = (acc[ch] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+export function chunkArray<T>(arr: T[], size: number): T[][] {
+  const result: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
 }
-console.log(countChars("hello"));
+
+const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const chunked = chunkArray(testArray, 3);
+console.log(chunked);
