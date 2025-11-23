@@ -56,7 +56,8 @@ class MemberService {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
-    const result = await this.memberModel.findById(member._id).exec();
+    const result = await this.memberModel.findById(member._id).lean().exec();
+    // Couldnt crewate a JWT with mongoose document, so convert to plain object, ask students as question
 
     return result;
   }
