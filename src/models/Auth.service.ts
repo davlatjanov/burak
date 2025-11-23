@@ -15,6 +15,7 @@ class AuthService {
         payload,
         this.secretToken,
         { expiresIn: duration },
+        //algorithm: "HS256"  // default, all headers same as JWT standard
         (err, token) => {
           if (err) {
             reject(
@@ -33,8 +34,9 @@ class AuthService {
       token,
       this.secretToken
     )) as Member;
-
+    console.log("AuthService - checkAuth result:", result);
     return result;
+    // result is not same as payload bc it has iat, exp fields
   }
 }
 
