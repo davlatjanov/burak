@@ -21,23 +21,38 @@ import { T } from "./libs/types/common";
 
 */
 
-/*W-TASK:
+/*X-TASK:
 
-Shunday function yozing, uni array va number parametrlari bolsin. Function arrayni numberda berilgan uzunlikda kesib bolaklarga ajratilgan array holatida qaytarsin
-MASALAN: chunkArray([1,2,3,4,5,6,7,8,9,10], 3) return [[1,2,3], [4,5,6], [7,8,9], [10]]
-
+ Shunday function yozing, uni object va string parapetrlari bolsin. Function string parametri object ichida necha marotaba takrorlanganligini qaytarsin (nested object bolsa ham sanasin)
+ MASALAN: countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model') return 2
 
 @MITASK
 */
 
-export function chunkArray<T>(arr: T[], size: number): T[][] {
-  const result: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
+function countOccurrences(obj: T, keyToCount: string): number {
+  let count = 0;
+
+  function recursiveCount(obj: T) {
+    for (const key in obj) {
+      if (key === keyToCount) {
+        count++;
+      }
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        recursiveCount(obj[key] as T);
+      }
+    }
   }
-  return result;
+
+  recursiveCount(obj);
+  return count;
 }
 
-const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const chunked = chunkArray(testArray, 3);
-console.log(chunked);
+const exampleObj = {
+  model: "Bugatti",
+  steer: {
+    model: "HANKOOK",
+    size: 30,
+  },
+};
+
+console.log(countOccurrences(exampleObj, "model"));
