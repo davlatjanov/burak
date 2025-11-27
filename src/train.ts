@@ -21,38 +21,16 @@ import { T } from "./libs/types/common";
 
 */
 
-/*X-TASK:
+/*Y-TASK:
 
- Shunday function yozing, uni object va string parapetrlari bolsin. Function string parametri object ichida necha marotaba takrorlanganligini qaytarsin (nested object bolsa ham sanasin)
- MASALAN: countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model') return 2
+ Shunday function yozing, uni 2 ta array parapetri bolsin. Function ikkala arrayda ham ishtirok etgan qiymatlarni bir arrayda qaytarsin
+ MASALAN: findIntersection([1,2,3], [3,2,0]) return [2,3]
 
 @MITASK
 */
 
-function countOccurrences(obj: T, keyToCount: string): number {
-  let count = 0;
-
-  function recursiveCount(obj: T) {
-    for (const key in obj) {
-      if (key === keyToCount) {
-        count++;
-      }
-      if (typeof obj[key] === "object" && obj[key] !== null) {
-        recursiveCount(obj[key] as T);
-      }
-    }
-  }
-
-  recursiveCount(obj);
-  return count;
+export function findIntersection(arr1: Number[], arr2: Number[]) {
+  return arr1.filter((value) => arr2.includes(value));
 }
 
-const exampleObj = {
-  model: "Bugatti",
-  steer: {
-    model: "HANKOOK",
-    size: 30,
-  },
-};
-
-console.log(countOccurrences(exampleObj, "model"));
+console.log(findIntersection([1, 2, 3], [3, 2, 0]));
