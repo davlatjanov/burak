@@ -21,16 +21,23 @@ import { T } from "./libs/types/common";
 
 */
 
-/*Y-TASK:
+/*Z-TASK:
 
- Shunday function yozing, uni 2 ta array parapetri bolsin. Function ikkala arrayda ham ishtirok etgan qiymatlarni bir arrayda qaytarsin
- MASALAN: findIntersection([1,2,3], [3,2,0]) return [2,3]
+Shunday function yozing, uni sonlardan tashkil topgan array qabul qilsin. Function arraydagi juft sonlarni yigindisini qaytarsin
+MASALAN: sumEvens([1,2,3]) return 2
 
 @MITASK
 */
-
-export function findIntersection(arr1: any[], arr2: any[]) {
-  return arr1.filter((value) => arr2.includes(value));
+function sumEvens(numbers: number[]): number {
+  let sum: number = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 === 0) {
+      sum += numbers[i];
+    }
+  }
+  return sum;
 }
 
-console.log(findIntersection([1, 2, 3, true], [3, 2, 0, true]));
+const testArray: number[] = [1, 2, 3, 4, 5, 6];
+const result: number = sumEvens(testArray);
+console.log(`The sum of even numbers in [${testArray}] is: ${result}`);
