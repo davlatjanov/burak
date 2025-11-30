@@ -29,8 +29,8 @@ import { T } from "./libs/types/common";
 @MITASK
 */
 
-export function findIntersection(arr1: Number[], arr2: Number[]) {
+export function findIntersection(arr1: any[], arr2: any[]) {
   return arr1.filter((value) => arr2.includes(value));
 }
 
-console.log(findIntersection([1, 2, 3], [3, 2, 0]));
+console.log(findIntersection([1, 2, 3, true], [3, 2, 0, true]));
