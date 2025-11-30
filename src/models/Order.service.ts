@@ -11,23 +11,29 @@ import { ObjectId } from "mongoose";
 import MemberService from "./Member.service";
 import { OrderStatus } from "../libs/enums/order.enum";
 import OrderModel from "../schemas/Order.model";
-import OrderItemModel from "../schemas/Orderitem.model";
+import OrderItemModel from "../schemas/OrderItem.model";
+import ProductService from "./Product.service";
 
 class OrderService {
   private readonly orderModel;
   private readonly orderItemModel;
   private readonly memberService;
+  private readonly productService;
 
   constructor() {
     this.orderModel = OrderModel;
     this.orderItemModel = OrderItemModel;
     this.memberService = new MemberService();
+    this.productService = new ProductService();
   }
 
   public async createOrder(
     member: Member,
     input: OrderItemInput[]
   ): Promise<Order> {
+    if (!input || input.length === 0) {
+      throw new Errors(HttpCode.BAD_REQUEST, Message.ORDER_CREATION_FAILED);
+    }
     const memberId = shapeIntoMongooseObjectId(member._id);
     const amount = input.reduce((accumulator: number, item: OrderItemInput) => {
       return accumulator + item.itemPrice * item.itemQuantity;
@@ -45,10 +51,20 @@ class OrderService {
       const orderId = newOrder._id;
       await this.recordOrderItem(orderId, input);
 
+      if (newOrder) {
+        const promisedList = input.map(async (item: OrderItemInput) => {
+          await this.productService.reduceProductCount(
+            item.productId,
+            item.itemQuantity
+          );
+        });
+        await Promise.all(promisedList);
+      }
+
       return newOrder;
     } catch (err) {
       console.log("Error, Model: createOrder", err);
-      throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
+      throw err;
     }
   }
 
@@ -62,8 +78,9 @@ class OrderService {
       await this.orderItemModel.create(item);
       return "Inserted";
     });
-
+    console.log("PromisedList", promisedList);
     const orderItemState = await Promise.all(promisedList);
+    console.log("OrderItemstate", orderItemState);
   }
 
   public async getMyOrders(

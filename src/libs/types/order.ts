@@ -26,7 +26,7 @@ export interface Order {
 
 export interface OrderItemInput {
   orderId?: ObjectId;
-  productId: ObjectId;
+  productId: string;
   itemQuantity: number;
   itemPrice: number;
 }

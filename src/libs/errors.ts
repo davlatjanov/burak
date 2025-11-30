@@ -12,14 +12,15 @@ export enum HttpCode {
 export enum Message {
   SOMETHING_WENT_WRONG = "Something went wrong!",
   NO_DATA_FOUND = "No data is found!",
-  CREATE_FAILED = " Create is failed!",
+  CREATE_FAILED = " You are inserting already used nick or phone!",
   UPDATE_FAILED = "Update is failed!",
   NO_MEMBER_NICK = "Nick is not found!",
   WRONG_PASSWORD = "Wrong Password!",
   NOT_AUTHENTICATED = "You are not autheticated, Please login first!",
   USER_BLOCKED = "You are blocked!",
-  USED_MEMBER_NICK = "Used member nick or phone!",
-  TOKEN_CREATION_FAILED = "TOKEN_CREATION_FAILED",
+  TOKEN_CREATION_FAILED = "Token creation failed!",
+  ORDER_CREATION_FAILED = "Order Creation Failed, Please add at least one item!",
+  OUT_OF_STOCK = "Sorry this product is out of stock!",
 }
 class Errors extends Error {
   public code: HttpCode;

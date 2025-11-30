@@ -115,6 +115,25 @@ class ProductService {
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
     return result;
   }
+
+  public async reduceProductCount(id: string, number: number) {
+    const result = await this.productModel
+      .findOneAndUpdate(
+        {
+          _id: shapeIntoMongooseObjectId(id),
+          productStatus: ProductStatus.PROCESS,
+          productLeftCount: { $gte: number },
+        },
+        { $inc: { productLeftCount: -number } },
+        { new: true }
+      )
+      .exec();
+
+    if (!result) {
+      throw new Errors(HttpCode.NOT_FOUND, Message.OUT_OF_STOCK);
+    }
+    return result;
+  }
 }
 
 export default ProductService;
