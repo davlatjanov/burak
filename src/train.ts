@@ -21,23 +21,20 @@ import { T } from "./libs/types/common";
 
 */
 
-/*Z-TASK:
+/*ZA-TASK:
 
-Shunday function yozing, uni sonlardan tashkil topgan array qabul qilsin. Function arraydagi juft sonlarni yigindisini qaytarsin
-MASALAN: sumEvens([1,2,3]) return 2
+Shunday function yozing, u array ichidagi objectlarni “age” qiymati boyicha sortlab bersin. 
+MASALAN: sortByAge([{age:23}, {age:21}, {age:13}]) return [{age:13}, {age:21}, {age:23}]
 
 @MITASK
 */
-function sumEvens(numbers: number[]): number {
-  let sum: number = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] % 2 === 0) {
-      sum += numbers[i];
-    }
-  }
-  return sum;
+
+type person = {
+  age: number;
+};
+
+function sortByAge(arr: person[]): person[] {
+  return arr.sort((a, b) => a.age - b.age);
 }
 
-const testArray: number[] = [1, 2, 3, 4, 5, 6];
-const result: number = sumEvens(testArray);
-console.log(`The sum of even numbers in [${testArray}] is: ${result}`);
+console.log(sortByAge([{ age: 23 }, { age: 21 }, { age: 13 }]));
