@@ -21,20 +21,16 @@ import { T } from "./libs/types/common";
 
 */
 
-/*ZA-TASK:
+/*ZC-TASK:
 
-Shunday function yozing, u array ichidagi objectlarni “age” qiymati boyicha sortlab bersin. 
-MASALAN: sortByAge([{age:23}, {age:21}, {age:13}]) return [{age:13}, {age:21}, {age:23}]
+Shunday function yozing, uni number parametri bolsin va function qabul parametrni selsiy miqdori sifatida qabul qilib uni farenhitga ozgartirib bersin
+MASALAN: celsiusToFahrenheit(0) return 32
 
 @MITASK
 */
 
-type person = {
-  age: number;
-};
-
-function sortByAge(arr: person[]): person[] {
-  return arr.sort((a, b) => a.age - b.age);
+function celsiusToFahrenheit(celsius: number): number {
+  return (celsius * 9) / 5 + 32;
 }
 
-console.log(sortByAge([{ age: 23 }, { age: 21 }, { age: 13 }]));
+console.log(celsiusToFahrenheit(0));
