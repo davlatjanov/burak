@@ -21,26 +21,23 @@ import { T } from "./libs/types/common";
 
 */
 
-/*ZD-TASK:
+/*ZE-TASK:
 
-Shunday function yozing, uni number, array va number parametrlari bolsin va berilgan 1-parametr numberga teng indexni array ichidan topib 3-parametrdagi raqam bilan almashtirib yangilangan arrayni qaytarsin
-MASALAN: changeNumberInArray(1, [1,3,7,2], 2) return [1,2,7,2]
+Shunday function yozing, uni  string parametri bolsin. String ichida takrorlangan harflarni olib tashlab qolganini qaytarsin
+MASALAN: removeDuplicate('stringg') return 'string'
 
 @MITASK
 */
 
-const changeNumberInArray = (
-  index: number,
-  arr: number[],
-  newNumber: number
-): number[] => {
-  if (index < 0 || index >= arr.length) {
-    throw new Error("Index out of bounds");
+export function removeDuplicate(str: string): string {
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if (result.indexOf(str[i]) === -1) {
+      result += str[i];
+    }
   }
-  const newArr = [...arr];
-  newArr[index] = newNumber;
-  return newArr;
-};
+  return result;
+}
 
-const result = changeNumberInArray(3, [1, 3, 7, 2], 0);
-console.log(result);
+console.log(removeDuplicate("stringg"));
+console.log(removeDuplicate("aabbccddeefff"));
