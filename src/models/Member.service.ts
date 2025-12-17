@@ -68,7 +68,7 @@ class MemberService {
 
     const result = await this.memberModel.findById(member._id).lean().exec();
 
-    return result.toJSON();
+    return result;
   }
 
   public async getMemberDetail(input: Member): Promise<Member> {
