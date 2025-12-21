@@ -21,14 +21,31 @@ import { T } from "./libs/types/common";
 
 */
 
-/*ZG-TASK:
+/*ZH-TASK:
 
-Shunday function yozing, u berilgan string parametrni snake casega otkazib qaytarsin. 
-MASALAN: capitalizeWords('name should be a string') return 'name_should_be_a_string'
-*/
+Shunday function yozing, u berilgan array parametrni ichidagi eng katta raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin. 
+MASALAN: findDisappearedNumbers([1, 3, 4, 7]) return [2, 5, 6]
 
-function capitalizeWords(input: string): string {
-  return input.split(" ").join("_");
+@MITASK*/
+
+function findDisappearedNumbers(nums: number[]): number[] {
+  const n = nums.length;
+  const present = new Array(n + 1).fill(false);
+  const result: number[] = [];
+
+  for (const num of nums) {
+    if (num >= 1 && num <= n) {
+      present[num] = true;
+    }
+  }
+
+  for (let i = 1; i <= n; i++) {
+    if (!present[i]) {
+      result.push(i);
+    }
+  }
+
+  return result;
 }
 
-console.log(capitalizeWords("name should be a string"));
+console.log(findDisappearedNumbers([1, 3, 4, 7]));
