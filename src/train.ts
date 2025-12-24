@@ -21,31 +21,25 @@ import { T } from "./libs/types/common";
 
 */
 
-/*ZH-TASK:
+/*
+TASK ZI
 
-Shunday function yozing, u berilgan array parametrni ichidagi eng katta raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin. 
-MASALAN: findDisappearedNumbers([1, 3, 4, 7]) return [2, 5, 6]
+Shundan function yozing, bu function 3 soniydan so'ng
+"Hello World!" so'zini qaytarsin.
 
-@MITASK*/
+MASALAN: delayHelloWorld("Hello World"); return "Hello World";
 
-function findDisappearedNumbers(nums: number[]): number[] {
-  const n = nums.length;
-  const present = new Array(n + 1).fill(false);
-  const result: number[] = [];
 
-  for (const num of nums) {
-    if (num >= 1 && num <= n) {
-      present[num] = true;
-    }
-  }
+*/
 
-  for (let i = 1; i <= n; i++) {
-    if (!present[i]) {
-      result.push(i);
-    }
-  }
-
-  return result;
+function delayHelloWorld(message: string): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(message);
+    }, 3000);
+  });
 }
 
-console.log(findDisappearedNumbers([1, 3, 4, 7]));
+delayHelloWorld("Hello World!").then((result) => {
+  console.log(result);
+});
