@@ -22,24 +22,23 @@ import { T } from "./libs/types/common";
 */
 
 /*
-TASK ZI
+TASK ZJ:
 
-Shundan function yozing, bu function 3 soniydan so'ng
-"Hello World!" so'zini qaytarsin.
+Shunday function yozing, u berilgan array ichidagi
+raqamlarni qiymatini hisoblab qaytarsin.
 
-MASALAN: delayHelloWorld("Hello World"); return "Hello World";
+MASALAN: reduceNestedArray([1, [1, 2, [4]]]); return 8;
 
 
 */
 
-function delayHelloWorld(message: string): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(message);
-    }, 3000);
-  });
+function reduceNestedArray(arr: any[]): number {
+  return arr.reduce((acc, curr) => {
+    if (Array.isArray(curr)) {
+      return acc + reduceNestedArray(curr);
+    }
+    return acc + (typeof curr === "number" ? curr : 0);
+  }, 0);
 }
 
-delayHelloWorld("Hello World!").then((result) => {
-  console.log(result);
-});
+console.log(reduceNestedArray([1, [1, 2, [4]]]));
