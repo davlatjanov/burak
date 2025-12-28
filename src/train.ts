@@ -22,23 +22,25 @@ import { T } from "./libs/types/common";
 */
 
 /*
-TASK ZJ:
+ZK-TASK:
 
-Shunday function yozing, u berilgan array ichidagi
-raqamlarni qiymatini hisoblab qaytarsin.
+Shunday function yozing, u har soniyada bir marta consolega 1 dan 5 gacha bolgan raqamlarni chop etsin va 5 soniyadan keyin ishini toxtatsin.
+MASALAN: printNumbers()
 
-MASALAN: reduceNestedArray([1, [1, 2, [4]]]); return 8;
-
-
+@MITASK
 */
 
-function reduceNestedArray(arr: any[]): number {
-  return arr.reduce((acc, curr) => {
-    if (Array.isArray(curr)) {
-      return acc + reduceNestedArray(curr);
+function printNumbers() {
+  let count = 1;
+  const interval = setInterval(() => {
+    if (count > 5) {
+      clearInterval(interval);
+    } else {
+      console.log(count);
+      count++;
     }
-    return acc + (typeof curr === "number" ? curr : 0);
-  }, 0);
+  }, 1000);
 }
 
-console.log(reduceNestedArray([1, [1, 2, [4]]]));
+console.log("Print numbers from 1 to 5 every second:");
+printNumbers();
