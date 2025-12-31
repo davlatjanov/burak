@@ -22,25 +22,15 @@ import { T } from "./libs/types/common";
 */
 
 /*
-ZK-TASK:
+ZL-TASK:
 
-Shunday function yozing, u har soniyada bir marta consolega 1 dan 5 gacha bolgan raqamlarni chop etsin va 5 soniyadan keyin ishini toxtatsin.
-MASALAN: printNumbers()
+Shunday function yozing, u parametrda berilgan stringni kebab casega otkazib qaytarsin. Bosh harflarni kichik harflarga ham otkazsin.
+MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab”
 
 @MITASK
 */
 
-function printNumbers() {
-  let count = 1;
-  const interval = setInterval(() => {
-    if (count > 5) {
-      clearInterval(interval);
-    } else {
-      console.log(count);
-      count++;
-    }
-  }, 1000);
+function stringToKebab(str: string): string {
+  return str.toLowerCase().split(" ").join("-");
 }
-
-console.log("Print numbers from 1 to 5 every second:");
-printNumbers();
+console.log(stringToKebab("I love Kebab"));
