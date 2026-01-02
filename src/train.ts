@@ -22,15 +22,18 @@ import { T } from "./libs/types/common";
 */
 
 /*
-ZL-TASK:
+ZM-TASK
 
-Shunday function yozing, u parametrda berilgan stringni kebab casega otkazib qaytarsin. Bosh harflarni kichik harflarga ham otkazsin.
-MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab”
+Shunday function yozing, u function parametrda berilgan sonni har bir raqamini kvadratiga ogirib qaytarsin. MASALAN: squareDigits(9119) return "811181".
 
 @MITASK
 */
 
-function stringToKebab(str: string): string {
-  return str.toLowerCase().split(" ").join("-");
+function squareDigits(num: number): string {
+  return num
+    .toString()
+    .split("")
+    .map((digit) => Math.pow(parseInt(digit), 2))
+    .join("");
 }
-console.log(stringToKebab("I love Kebab"));
+console.log(squareDigits(9119));
