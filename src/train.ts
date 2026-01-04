@@ -22,18 +22,14 @@ import { T } from "./libs/types/common";
 */
 
 /*
-ZM-TASK
+ZN-TASK
 
-Shunday function yozing, u function parametrda berilgan sonni har bir raqamini kvadratiga ogirib qaytarsin. MASALAN: squareDigits(9119) return "811181".
-
-@MITASK
+Shunday function yozing, uni array va number parametri bolsin. Ikkinchi parametrda berilgan raqamli indexgacha arrayni orqasiga ogirib qaytarsin. MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3) return [5, 6, 1, 2, 3, 4].
 */
 
-function squareDigits(num: number): string {
-  return num
-    .toString()
-    .split("")
-    .map((digit) => Math.pow(parseInt(digit), 2))
-    .join("");
+function rotateArray<T>(arr: T[], index: number): T[] {
+  const cut = arr.length - index;
+  return arr.slice(cut).concat(arr.slice(0, cut));
 }
-console.log(squareDigits(9119));
+
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
