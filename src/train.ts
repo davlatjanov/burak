@@ -22,14 +22,29 @@ import { T } from "./libs/types/common";
 */
 
 /*
-ZN-TASK
+ZP-TASK
 
-Shunday function yozing, uni array va number parametri bolsin. Ikkinchi parametrda berilgan raqamli indexgacha arrayni orqasiga ogirib qaytarsin. MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3) return [5, 6, 1, 2, 3, 4].
+Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin. MASALAN: countNumberAndLetters("string152%\¥") return {number:3, letter:6}.
+
+@MITASK
 */
 
-function rotateArray<T>(arr: T[], index: number): T[] {
-  const cut = arr.length - index;
-  return arr.slice(cut).concat(arr.slice(0, cut));
+function countNumberAndLetters(str: string): {
+  number: number;
+  letter: number;
+} {
+  let number = 0;
+  let letter = 0;
+
+  for (const char of str) {
+    if (/[0-9]/.test(char)) {
+      number++;
+    } else if (/[a-zA-Z]/.test(char)) {
+      letter++;
+    }
+  }
+
+  return { number, letter };
 }
 
-console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
+console.log(countNumberAndLetters("string152%\\¥"));
