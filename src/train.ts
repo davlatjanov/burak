@@ -22,29 +22,28 @@ import { T } from "./libs/types/common";
 */
 
 /*
-ZP-TASK
 
-Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin. MASALAN: countNumberAndLetters("string152%\¥") return {number:3, letter:6}.
+Shunday function yozing, u 2 ta array parametr qabul qilsin.
+Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
+(ya'ni, ularning barcha elementlari bir xil bo'lishini) tekshirishingiz kerak.
+
+MASALAN:
+areArraysEqual([1, 2, 3], [3, 1, 2]) // true
 
 @MITASK
 */
 
-function countNumberAndLetters(str: string): {
-  number: number;
-  letter: number;
-} {
-  let number = 0;
-  let letter = 0;
+function areArraysEqual(arr1: any[], arr2: any[]): boolean {
+  if (arr1.length !== arr2.length) return false;
 
-  for (const char of str) {
-    if (/[0-9]/.test(char)) {
-      number++;
-    } else if (/[a-zA-Z]/.test(char)) {
-      letter++;
-    }
+  const sortedArr1 = arr1.slice().sort();
+  const sortedArr2 = arr2.slice().sort();
+
+  for (let i = 0; i < sortedArr1.length; i++) {
+    if (sortedArr1[i] !== sortedArr2[i]) return false;
   }
 
-  return { number, letter };
+  return true;
 }
 
-console.log(countNumberAndLetters("string152%\\¥"));
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2]));
