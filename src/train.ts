@@ -23,27 +23,29 @@ import { T } from "./libs/types/common";
 
 /*
 
-Shunday function yozing, u 2 ta array parametr qabul qilsin.
-Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
-(ya'ni, ularning barcha elementlari bir xil bo'lishini) tekshirishingiz kerak.
+ZS-TASK
 
-MASALAN:
-areArraysEqual([1, 2, 3], [3, 1, 2]) // true
+Shunday function yozing, u parametridagi arrayni ichidagi 1 marta kelgan elemnetni qaytarsin. MASALAN: singleNumber([4, 2, 1, 2, 1]) return 4.
+
+@MITASK
 
 @MITASK
 */
 
-function areArraysEqual(arr1: any[], arr2: any[]): boolean {
-  if (arr1.length !== arr2.length) return false;
+function singleNumber(arr: number[]): number | null {
+  const numCount: { [key: number]: number } = {};
 
-  const sortedArr1 = arr1.slice().sort();
-  const sortedArr2 = arr2.slice().sort();
-
-  for (let i = 0; i < sortedArr1.length; i++) {
-    if (sortedArr1[i] !== sortedArr2[i]) return false;
+  for (const num of arr) {
+    numCount[num] = (numCount[num] || 0) + 1;
   }
 
-  return true;
+  for (const num in numCount) {
+    if (numCount[num] === 1) {
+      return parseInt(num);
+    }
+  }
+
+  return null;
 }
 
-console.log(areArraysEqual([1, 2, 3], [3, 1, 2]));
+console.log(singleNumber([4, 2, 1, 2, 1]));
