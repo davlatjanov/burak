@@ -22,28 +22,27 @@ import { T } from "./libs/types/common";
 */
 
 /*
+ZU-TASK
 
-ZT-TASK
-
-Shunday function yozing, u parametridagi string ichida 1 martadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin. MASALAN: firstUniqueCharIndex("stamp") return 0.
+Shunday function yozing, u parametridagi array ichida takrorlanmagan raqamlar yig'indisini qaytarsin. MASALAN: sumOfUnique([1,2,3,2]) return 4.
 
 @MITASK
 */
 
-function firstUniqueCharIndex(s: string): number {
-  const charCount: { [key: string]: number } = {};
+function sumOfUnique(arr: number[]): number {
+  const numCount: { [key: number]: number } = {};
+  let sum = 0;
 
-  for (const char of s) {
-    charCount[char] = (charCount[char] || 0) + 1;
+  for (const num of arr) {
+    numCount[num] = (numCount[num] || 0) + 1;
   }
 
-  for (let i = 0; i < s.length; i++) {
-    if (charCount[s[i]] === 1) {
-      return i;
+  for (const num in numCount) {
+    if (numCount[num] === 1) {
+      sum += Number(num);
     }
   }
 
-  return -1;
+  return sum;
 }
-
-console.log(firstUniqueCharIndex("stamp"));
+console.log(sumOfUnique([1, 2, 3, 2]));
